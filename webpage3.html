@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OccasionalVenue.com</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/free-photo/nightlife-celebration-multi-colored-bar-establishment-generative-ai_188544-12375.jpg?w=1380&t=st=1714247898~exp=1714248498~hmac=eea856223360dae4c97885e2901a462311e640fa2fa0d5e9a9a51b9734b16f39');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        select,
+        input[type="number"] {
+            width: calc(100% - 22px); /* Adjusted width */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #333;
+	    font-weight: bold;
+            background-color: #fff;
+            display: inline-block;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .disabled {
+            background-color: #ccc !important;
+            cursor: not-allowed !important;
+        }
+
+        #product-price {
+            color: black;
+	    font-weight: bold;
+        }
+	p {
+    	    margin-bottom: 20px;
+            color: black; /* Set the color of the "Price:" text */
+	    font-weight: bold;
+	}
+
+
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>OccasionalVenue.com</h1>
+        <button id="instagram-button" onclick="redirectToInstagram()">Follow Us On Instagram</button> <br></br>
+        <form id="product-form">
+            <label for="product-dropdown">Select a Place:</label>
+            <select name="product-dropdown" id="product-dropdown" onchange="updatePrice()">
+                <option value="xyz">XYZ Place</option>
+                <option value="pqr">PQR Place</option>
+                <option value="abc">ABC Place</option>
+            </select>
+            <p><span>Price:</span> <span id="product-price">$0.00</span></p>
+            <input type="number" id="quantity" min="1" value="1" onchange="updatePrice()">
+            <button id="buy-button" type="submit" class="disabled" disabled>Pay Now</button>
+        </form>
+    </div>
+
+    <script>
+        // Define prices for each product
+        const productPrices = {
+            xyz: 10.99,
+            pqr: 15.49,
+            abc: 8.75
+        };
+
+        // Function to calculate and display the price
+        function updatePrice() {
+            const selectedProduct = document.getElementById("product-dropdown").value;
+            const quantity = parseInt(document.getElementById("quantity").value);
+            const totalPrice = productPrices[selectedProduct] * quantity;
+            const priceElement = document.getElementById("product-price");
+            priceElement.textContent = `$${totalPrice.toFixed(2)}`;
+        }
+
+        // Function to redirect to Instagram profile and enable buy button
+        function redirectToInstagram() {
+            localStorage.setItem("instagram_visited", "true");
+            window.location.href = "https://www.instagram.com/occasionalvenue_com/"; // Replace with your Instagram profile URL
+        }
+
+        // Check if Instagram profile has been visited on page load
+        window.onload = function() {
+            if (localStorage.getItem("instagram_visited") === "true") {
+                document.getElementById("buy-button").classList.remove("disabled");
+                document.getElementById("buy-button").removeAttribute("disabled");
+            }
+
+            // Calculate and display initial price on page load
+            updatePrice();
+        };
+    </script>
+</body>
+</html>
