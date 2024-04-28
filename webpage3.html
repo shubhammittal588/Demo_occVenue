@@ -8,8 +8,8 @@
         body {
             font-family: Arial, sans-serif;
             background-image: url('https://img.freepik.com/free-photo/nightlife-celebration-multi-colored-bar-establishment-generative-ai_188544-12375.jpg?w=1380&t=st=1714247898~exp=1714248498~hmac=eea856223360dae4c97885e2901a462311e640fa2fa0d5e9a9a51b9734b16f39');
-            background-size: 400%;
-            background-position: center;
+            background-size: cover;
+          //  background-position: center;
             background-repeat: no-repeat;
             color: #fff;
             margin: 0;
@@ -98,8 +98,8 @@
                 <option value="pqr">PQR Place</option>
                 <option value="abc">ABC Place</option>
             </select>
-            <p><span>Price:</span> <span id="product-price">$0.00</span></p>
-            <input type="number" id="quantity" min="1" value="1" onchange="updatePrice()">
+            <p><span>Price:</span> <span id="product-price">₹0.00</span></p>
+             <input type="number" id="quantity" min="1" value="1" oninput="updatePrice()">
             <button id="buy-button" type="submit" class="disabled" disabled>Pay Now</button>
         </form>
     </div>
@@ -107,9 +107,9 @@
     <script>
         // Define prices for each product
         const productPrices = {
-            xyz: 10.99,
-            pqr: 15.49,
-            abc: 8.75
+            xyz: 500.99,
+            pqr: 750.49,
+            abc: 1000.75
         };
 
         // Function to calculate and display the price
@@ -118,7 +118,7 @@
             const quantity = parseInt(document.getElementById("quantity").value);
             const totalPrice = productPrices[selectedProduct] * quantity;
             const priceElement = document.getElementById("product-price");
-            priceElement.textContent = `$${totalPrice.toFixed(2)}`;
+            priceElement.textContent = `₹${totalPrice.toFixed(2)}`;
         }
 
         // Function to redirect to Instagram profile and enable buy button
